@@ -28,7 +28,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
             type="text"
             value={unit}
             onChange={(e) => setUnit(e.target.value)}
-            placeholder="Enter unit number"
+            placeholder="eg: 1008"
           />
         </div>
         <div>
@@ -40,7 +40,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            placeholder="Enter street address"
+            placeholder="eg: 12 York St"
           />
         </div>
       </div>
