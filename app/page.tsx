@@ -51,6 +51,19 @@ export default function Home() {
           <TopAddresses />
         </section>
       </div>
+
+      <footer className="mt-12 pt-8 border-t border-gray-200">
+        <div className="text-center">
+          <p className="text-gray-600 mb-2">Have questions or feedback?</p>
+          <a 
+            href="mailto:zspengyou@gmail.com"
+            className="text-blue-600 hover:text-blue-800 hover:underline"
+            aria-label="Contact us via email"
+          >
+            Contact Us
+          </a>
+        </div>
+      </footer>
     </main>
   );
 }
