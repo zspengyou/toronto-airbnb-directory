@@ -37,6 +37,23 @@ export async function GET(request: Request) {
         if (unit && property.unit !== unit) return false;
         if (address && !property.address.toLowerCase().includes(address.toLowerCase())) return false;
         return true;
+      })
+      .sort((property1, property2) => {
+        // Handle empty units by putting them at the end
+        if (!property1.unit) return 1;
+        if (!property2.unit) return -1;
+        
+        // Convert unit numbers to integers for proper numeric sorting
+        const unitA = parseInt(property1.unit, 10);
+        const unitB = parseInt(property2.unit, 10);
+        
+        // If both are valid numbers, sort numerically
+        if (!isNaN(unitA) && !isNaN(unitB)) {
+          return unitA - unitB;
+        }
+        
+        // If one is not a number, sort alphabetically
+        return property1.unit.localeCompare(property2.unit);
       });
 
     return NextResponse.json({
