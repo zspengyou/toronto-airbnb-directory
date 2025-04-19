@@ -33,42 +33,42 @@ export function TopAddresses() {
 
   if (isLoading) {
     return (
-      <div className="text-center py-1">
-        <p className="text-gray-500 text-xs">Loading...</p>
+      <div className="text-center py-4">
+        <p className="text-gray-500 ">Loading...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="text-center py-1">
-        <p className="text-red-500 text-xs">Error: {error}</p>
+      <div className="text-center py-4">
+        <p className="text-red-500 ">Error: {error}</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-1">
-      <h2 className="text-sm font-semibold">Top 5 Addresses</h2>
-      <div className="bg-white shadow rounded overflow-hidden">
+    <div className="space-y-4">
+      <h2 className="text-xl font-semibold">Top 5 Airbnb Building</h2>
+      <div className="bg-white shadow rounded-lg overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-2 py-1 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Address
               </th>
-              <th className="px-2 py-1 text-left text-[10px] font-medium text-gray-500 uppercase tracking-wider">
-                Count
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Number of Listings
               </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {topAddresses.map((item, index) => (
               <tr key={index}>
-                <td className="px-2 py-1 whitespace-nowrap text-[10px] text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900">
                   {item.address}
                 </td>
-                <td className="px-2 py-1 whitespace-nowrap text-[10px] text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 text-center">
                   {item.count}
                 </td>
               </tr>
