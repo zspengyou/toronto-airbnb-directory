@@ -53,15 +53,27 @@ export default function Home() {
       </div>
 
       <footer className="mt-12 pt-8 border-t border-gray-200">
-        <div className="text-center">
-          <p className="text-gray-600 mb-2">Have questions or feedback?</p>
-          <a 
-            href="mailto:zspengyou@gmail.com"
-            className="text-blue-600 hover:text-blue-800 hover:underline"
-            aria-label="Contact us via email"
-          >
-            Contact Us
-          </a>
+        <div className="text-center space-y-2">
+          <p className="text-gray-600">Have questions or feedback?</p>
+          <div className="flex justify-center space-x-4">
+            <a 
+              href="mailto:zspengyou@gmail.com"
+              className="text-blue-600 hover:text-blue-800 hover:underline"
+              aria-label="Contact us via email"
+            >
+              Contact Us
+            </a>
+            <span className="text-gray-400">|</span>
+            <a 
+              href="https://x.com/dev_jayzhou"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 hover:underline"
+              aria-label="Follow us on Twitter"
+            >
+              Follow on X
+            </a>
+          </div>
         </div>
       </footer>
     </main>
