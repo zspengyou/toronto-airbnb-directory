@@ -26,23 +26,30 @@ export default function Home() {
 
   return (
     <main className="min-h-screen p-8 max-w-7xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Toronto Airbnb Directory</h1>
-      <div className="space-y-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <SearchForm onSearch={handleSearch} />
-            {isLoading ? (
-              <div className="text-center py-8">
-                <p className="text-gray-500">Loading...</p>
-              </div>
-            ) : (
-              <ResultsTable results={results} total={total} />
-            )}
-          </div>
-          <div>
-            <TopAddresses />
-          </div>
-        </div>
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold">Toronto Airbnb Directory</h1>
+        <p className="mt-2 text-gray-600">
+          Search and find registered short-term rental properties in Toronto. View operator registration numbers, addresses, units, and property types.
+        </p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <section aria-labelledby="search-section" className="lg:col-span-2">
+          <h2 id="search-section" className="sr-only">Search Properties</h2>
+          <SearchForm onSearch={handleSearch} />
+          {isLoading ? (
+            <div className="text-center py-8" role="status" aria-label="Loading results">
+              <p className="text-gray-500">Loading...</p>
+            </div>
+          ) : (
+            <ResultsTable results={results} total={total} />
+          )}
+        </section>
+
+        <section aria-labelledby="top-addresses-section">
+          <h2 id="top-addresses-section" className="sr-only">Top Addresses</h2>
+          <TopAddresses />
+        </section>
       </div>
     </main>
   );

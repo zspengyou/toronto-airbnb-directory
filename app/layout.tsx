@@ -5,8 +5,37 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Toronto Airbnb Directory",
-  description: "Search for registered short-term rental properties in Toronto",
+  title: "Toronto Airbnb Directory | Find Short-Term Rentals in Toronto",
+  description: "Search and find registered short-term rental properties in Toronto. View operator registration numbers, addresses, units, and property types. Discover the top buildings with the most Airbnb listings.",
+  keywords: "Toronto Airbnb, short-term rentals, Toronto rentals, Airbnb directory, Toronto vacation rentals, STR registration",
+  authors: [{ name: "Toronto Airbnb Directory" }],
+  openGraph: {
+    title: "Toronto Airbnb Directory | Find Short-Term Rentals in Toronto",
+    description: "Search and find registered short-term rental properties in Toronto. View operator registration numbers, addresses, units, and property types.",
+    type: "website",
+    locale: "en_CA",
+    siteName: "Toronto Airbnb Directory",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Toronto Airbnb Directory | Find Short-Term Rentals in Toronto",
+    description: "Search and find registered short-term rental properties in Toronto. View operator registration numbers, addresses, units, and property types.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+  verification: {
+    google: "your-google-site-verification", // Add your Google Search Console verification code
+  },
 };
 
 export default function RootLayout({
