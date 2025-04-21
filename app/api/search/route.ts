@@ -28,10 +28,14 @@ export async function GET(request: Request) {
     const results = lines.slice(1)
       .map(line => {
         const values = line.split(',');
-        return headers.reduce((obj, header, index) => {
-          obj[header as keyof RentalProperty] = values[index] || '';
-          return obj;
+        return headers.reduce((accumulator, header, index) => {
+          accumulator[header as keyof RentalProperty] = values[index] || '';
+          return accumulator;
         }, {} as RentalProperty);
+        //array.reduce(
+        //  (accumulator, currentValue, currentIndex, array) => {  // do something    }, 
+        //  initialValue
+        // );
       })
       .filter(property => {
         if (unit && property.unit !== unit) return false;
