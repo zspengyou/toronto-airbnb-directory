@@ -22,7 +22,7 @@ export async function GET(request: Request) {
       if (address && address.toLowerCase().includes(query)) {
         addresses.add(address);
       }
-    });====
+    });
 
     return NextResponse.json(Array.from(addresses).slice(0, 10)); // Limit to 10 suggestions
   } catch (error) {
