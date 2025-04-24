@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Input } from './ui/input';
 
 interface SearchFormProps {
@@ -10,31 +10,35 @@ interface SearchFormProps {
 export function SearchForm({ onSearch }: SearchFormProps) {
   const [unit, setUnit] = useState('');
   const [address, setAddress] = useState('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [allAddresses, setAllAddresses] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
+  // Fetch all addresses once when component mounts
   useEffect(() => {
-    const fetchSuggestions = async () => {
-      if (address.length < 2) {
-        setSuggestions([]);
-        return;
-      }
-
+    const fetchAddresses = async () => {
       try {
-        const response = await fetch(`/api/addresses?q=${encodeURIComponent(address)}`);
+        const response = await fetch('/api/addresses');
         if (response.ok) {
           const data = await response.json();
-          setSuggestions(data);
+          setAllAddresses(data);
         }
       } catch (error) {
-        console.error('Error fetching suggestions:', error);
+        console.error('Error fetching addresses:', error);
       }
     };
 
-    const debounceTimer = setTimeout(fetchSuggestions, 300);
-    return () => clearTimeout(debounceTimer);
-  }, [address]);
+    fetchAddresses();
+  }, []);
+
+  // Filter addresses based on input
+  const filteredAddresses = useMemo(() => {
+    if (address.length < 2) return [];
+    const query = address.toLowerCase();
+    return allAddresses
+      .filter(addr => addr.toLowerCase().includes(query))
+      .slice(0, 30);
+  }, [address, allAddresses]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -88,9 +92,9 @@ export function SearchForm({ onSearch }: SearchFormProps) {
             onFocus={() => setShowSuggestions(true)}
             placeholder="eg: 12 York St"
           />
-          {showSuggestions && suggestions.length > 0 && (
+          {showSuggestions && filteredAddresses.length > 0 && (
             <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg">
-              {suggestions.map((suggestion, index) => (
+              {filteredAddresses.map((suggestion, index) => (
                 <div
                   key={index}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
