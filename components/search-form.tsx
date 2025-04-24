@@ -63,7 +63,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="unit" className="block text-sm font-medium mb-1">
-            Unit Number
+            Unit Number (Optional)
           </label>
           <Input
             id="unit"
