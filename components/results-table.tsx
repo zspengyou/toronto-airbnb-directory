@@ -26,13 +26,13 @@ export function ResultsTable({ results, total }: ResultsTableProps) {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Registration Number
+                Unit
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Address
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Unit
+                Registration Number
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Property Type
@@ -43,13 +43,13 @@ export function ResultsTable({ results, total }: ResultsTableProps) {
             {results.map((property) => (
               <tr key={property._id}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {property.operator_registration_number}
+                  {property.unit || '-'}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   {property.address}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {property.unit || '-'}
+                  {property.operator_registration_number}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   {property.property_type}
