@@ -17,6 +17,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const unit = searchParams.get('unit') || undefined;
   const address = searchParams.get('address') || undefined;
+  const registrationNumber = searchParams.get('registrationNumber') || undefined;
 
   try {
     const filePath = path.join(process.cwd(), 'data', 'short-term-rental-registrations-data.csv');
@@ -40,6 +41,7 @@ export async function GET(request: Request) {
       .filter(property => {
         if (unit && property.unit !== unit) return false;
         if (address && !property.address.toLowerCase().includes(address.toLowerCase())) return false;
+        if (registrationNumber && !property.operator_registration_number.toLowerCase().includes(registrationNumber.toLowerCase())) return false;
         return true;
       })
       .sort((property1, property2) => {

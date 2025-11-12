@@ -16,13 +16,14 @@ export interface RentalProperty {
   ward_name: string;
 }
 
-export async function searchProperties(unit?: string, address?: string): Promise<{
+export async function searchProperties(unit?: string, address?: string, registrationNumber?: string): Promise<{
   results: RentalProperty[];
   total: number;
 }> {
   const params = new URLSearchParams();
   if (unit) params.append('unit', unit);
   if (address) params.append('address', address);
+  if (registrationNumber) params.append('registrationNumber', registrationNumber);
 
   const response = await fetch(`/api/search?${params.toString()}`);
   

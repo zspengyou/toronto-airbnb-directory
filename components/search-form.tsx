@@ -4,12 +4,13 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { Input } from './ui/input';
 
 interface SearchFormProps {
-  onSearch: (unit: string, address: string) => void;
+  onSearch: (unit: string, address: string, registrationNumber: string) => void;
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
   const [unit, setUnit] = useState('');
   const [address, setAddress] = useState('');
+  const [registrationNumber, setRegistrationNumber] = useState('');
   const [allAddresses, setAllAddresses] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestionsRef = useRef<HTMLDivElement>(null);
@@ -53,18 +54,18 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(unit, address);
+    onSearch(unit, address, registrationNumber);
   };
 
   const handleSuggestionClick = (suggestion: string) => {
     setAddress(suggestion);
     setShowSuggestions(false);
-    onSearch(unit, suggestion);
+    onSearch(unit, suggestion, registrationNumber);
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
           <label htmlFor="unit" className="block text-sm font-medium mb-1">
             Unit Number (Optional)
@@ -105,6 +106,18 @@ export function SearchForm({ onSearch }: SearchFormProps) {
               ))}
             </div>
           )}
+        </div>
+        <div>
+          <label htmlFor="registrationNumber" className="block text-sm font-medium mb-1">
+            Registration Number (Optional)
+          </label>
+          <Input
+            id="registrationNumber"
+            type="text"
+            value={registrationNumber}
+            onChange={(e) => setRegistrationNumber(e.target.value)}
+            placeholder="eg: 24-000001"
+          />
         </div>
       </div>
       <button

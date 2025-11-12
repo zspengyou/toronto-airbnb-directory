@@ -11,10 +11,14 @@ export default function Home() {
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async (unit: string, address: string) => {
+  const handleSearch = async (unit: string, address: string, registrationNumber: string) => {
     setIsLoading(true);
     try {
-      const { results, total } = await searchProperties(unit || undefined, address || undefined);
+      const { results, total } = await searchProperties(
+        unit || undefined, 
+        address || undefined,
+        registrationNumber || undefined
+      );
       setResults(results);
       setTotal(total);
     } catch (error) {
