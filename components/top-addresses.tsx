@@ -15,7 +15,7 @@ export function TopAddresses() {
   useEffect(() => {
     const fetchTopAddresses = async () => {
       try {
-        const response = await fetch('/api/top-addresses');
+        const response = await fetch('/airbnb-directory/api/top-addresses');
         if (!response.ok) {
           throw new Error('Failed to fetch top addresses');
         }

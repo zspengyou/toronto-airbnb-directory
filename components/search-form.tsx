@@ -19,7 +19,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   useEffect(() => {
     const fetchAddresses = async () => {
       try {
-        const response = await fetch('/api/addresses');
+        const response = await fetch('/airbnb-directory/api/addresses');
         if (response.ok) {
           const data = await response.json();
           setAllAddresses(data);

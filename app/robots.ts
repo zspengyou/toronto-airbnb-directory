@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'], // Disallow API routes
     },
-    sitemap: 'https://toronto-airbnb-directory.vercel.app/sitemap.xml', // Replace with your actual domain
+    sitemap: 'https://airbnbreply.com/airbnb-directory/sitemap.xml',
   };
 } 

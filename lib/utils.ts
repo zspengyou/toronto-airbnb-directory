@@ -25,7 +25,7 @@ export async function searchProperties(unit?: string, address?: string, registra
   if (address) params.append('address', address);
   if (registrationNumber) params.append('registrationNumber', registrationNumber);
 
-  const response = await fetch(`/api/search?${params.toString()}`);
+  const response = await fetch(`/airbnb-directory/api/search?${params.toString()}`);
   
   if (!response.ok) {
     throw new Error('Failed to search properties');
