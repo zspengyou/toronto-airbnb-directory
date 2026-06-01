@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1057.0",
+    "@aws-sdk/lib-dynamodb": "^3.1057.0",
     "@next/third-parties": "^15.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

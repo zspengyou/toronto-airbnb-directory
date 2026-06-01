@@ -2,6 +2,31 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 ## source data
 https://open.toronto.ca/dataset/short-term-rentals-registration/
 
+## Events collector (`/airbnb-directory/events`)
+
+Read-only feed of major Toronto events (Blue Jays, Raptors, …) to support manual
+Airbnb pricing decisions. A [Vercel Cron](https://vercel.com/docs/cron-jobs) job
+(`vercel.json`) hits `app/api/cron/collect-events` daily; it pulls events from the
+Ticketmaster Discovery API and upserts them into a DynamoDB table. The `app/events`
+page reads the table and renders them.
+
+Architecture is provider-based so new sources/series are cheap to add:
+- **Add a series** (e.g. Maple Leafs): one entry in `lib/events/subscriptions.ts`.
+  Find its Ticketmaster ids with
+  `TICKETMASTER_API_KEY=xxx node scripts/discover-ticketmaster-ids.mjs "Toronto Maple Leafs" "Scotiabank Arena"`.
+- **Add a website/API**: implement `EventProvider` in `lib/events/providers/` and
+  register it in `lib/events/providers/index.ts`.
+
+The DynamoDB table + the IAM user this app uses are provisioned by the
+`airbnbAutoReply` CDK stack (it owns the AWS infra). Required env vars are listed
+in `.env.example` — set them in `.env.local` for local dev and in the Vercel
+project settings for deployment. Trigger the collector manually with:
+
+```bash
+curl -H "Authorization: Bearer $CRON_SECRET" \
+  https://<your-domain>/airbnb-directory/api/cron/collect-events
+```
+
 ## Getting Started
 
 First, run the development server:
